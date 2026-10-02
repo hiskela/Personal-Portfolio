@@ -3,9 +3,8 @@ import Home from "../models/Home.js";
 export const getHome = async (req, res) => {
   try {
     const home = await Home.findOne();
-
     res.status(200).json(home);
-  } catch (error) {
+  } catch {
     res.status(500).json({
       message: "Failed to fetch home information",
     });
@@ -29,15 +28,17 @@ export const createHome = async (req, res) => {
       github: req.body.github || "",
       linkedin: req.body.linkedin || "",
       status: req.body.status || "Available for opportunities",
-      cv: req.file
-        ? `/uploads/cv/${req.file.filename}`
+      cv: req.files?.cv?.[0]
+        ? `/uploads/cv/${req.files.cv[0].filename}`
+        : "",
+      profileImage: req.files?.profileImage?.[0]
+        ? `/uploads/profile/${req.files.profileImage[0].filename}`
         : "",
     });
 
     res.status(201).json(home);
   } catch (error) {
     console.error(error);
-
     res.status(500).json({
       message: "Failed to create home information",
     });
@@ -61,8 +62,12 @@ export const updateHome = async (req, res) => {
     home.linkedin = req.body.linkedin || "";
     home.status = req.body.status || "";
 
-    if (req.file) {
-      home.cv = `/uploads/cv/${req.file.filename}`;
+    if (req.files?.cv?.[0]) {
+      home.cv = `/uploads/cv/${req.files.cv[0].filename}`;
+    }
+
+    if (req.files?.profileImage?.[0]) {
+      home.profileImage = `/uploads/profile/${req.files.profileImage[0].filename}`;
     }
 
     await home.save();
@@ -70,7 +75,6 @@ export const updateHome = async (req, res) => {
     res.status(200).json(home);
   } catch (error) {
     console.error(error);
-
     res.status(500).json({
       message: "Failed to update home information",
     });
