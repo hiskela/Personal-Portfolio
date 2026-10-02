@@ -123,11 +123,15 @@ function Home() {
 
             <div className="relative overflow-hidden rounded-[2rem] border border-gray-200 bg-gray-50 p-2.5 shadow-2xl shadow-gray-200/50 sm:rounded-[2.5rem] sm:p-3 dark:border-gray-800 dark:bg-[#111111] dark:shadow-black/40">
               <div className="overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
-                <img
-                  src="/profile.jpg"
-                  alt={home?.name || "Profile"}
-                  className="aspect-square w-full object-cover object-center transition duration-500 hover:scale-105"
-                />
+               <img
+  src={
+    home?.profileImage
+      ? `http://localhost:5000${home.profileImage}`
+      : "/profile.jpg"
+  }
+  alt={home?.name || "Profile"}
+  className="aspect-square w-full object-cover object-center transition duration-500 hover:scale-105"
+/>
               </div>
 
               <div className="absolute bottom-5 left-5 right-5 rounded-xl border border-white/20 bg-black/60 px-4 py-3 text-white backdrop-blur-md sm:bottom-7 sm:left-7 sm:right-7 sm:rounded-2xl sm:px-5 sm:py-4">

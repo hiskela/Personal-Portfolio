@@ -6,6 +6,7 @@ function AdminHome() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 const [cvFile, setCvFile] = useState(null);
+const [profileImage, setProfileImage] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     title: "",
@@ -85,6 +86,9 @@ const [cvFile, setCvFile] = useState(null);
   if (cvFile) {
     data.append("cv", cvFile);
   }
+if (profileImage) {
+  data.append("profileImage", profileImage);
+}
 
   try {
     const response = await fetch(
@@ -119,6 +123,7 @@ const [cvFile, setCvFile] = useState(null);
     });
 
     setCvFile(null);
+setProfileImage(null)
 
     alert("Home information saved successfully.");
   } catch (error) {
@@ -257,6 +262,22 @@ const [cvFile, setCvFile] = useState(null);
 
   <p className="mt-2 text-xs text-gray-500">
     PDF only. Maximum size: 5 MB.
+  </p>
+</div>
+<div>
+  <label className="mb-2 block text-sm font-medium">
+    Profile Image
+  </label>
+
+  <input
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+    onChange={(e) => setProfileImage(e.target.files[0])}
+    className="block w-full rounded-lg border border-gray-300 bg-white p-2 text-sm dark:border-gray-700 dark:bg-gray-900"
+  />
+
+  <p className="mt-1 text-xs text-gray-500">
+    JPG, PNG or WebP. Maximum 5MB.
   </p>
 </div>
                 <div>

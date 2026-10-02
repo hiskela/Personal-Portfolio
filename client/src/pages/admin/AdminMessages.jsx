@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import AdminSidebar from "./components/AdminSidebar";
 function AdminMessages() {
   const navigate = useNavigate();
 
@@ -109,6 +109,8 @@ function AdminMessages() {
   };
 
   return (
+    <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-[#0a0a0a] dark:text-white">
+<AdminSidebar/>
     <main className="min-h-screen bg-white px-6 py-10 text-gray-900 dark:bg-[#0a0a0a] dark:text-white">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 flex items-center justify-between">
@@ -210,6 +212,7 @@ function AdminMessages() {
         )}
       </div>
     </main>
+</div>
   );
 }
 
