@@ -8,7 +8,7 @@ function About() {
     const fetchAbout = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/about?t=${Date.now()}`,
+          `${import.meta.env.VITE_API_URL}/api/about?t=${Date.now()}`,
           {
             cache: "no-store",
           }

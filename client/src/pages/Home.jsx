@@ -12,7 +12,7 @@ function Home() {
     const fetchHome = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/home?t=${Date.now()}`,
+          `${import.meta.env.VITE_API_URL}/api/home?t=${Date.now()}`,
           {
             cache: "no-store",
           }
@@ -81,7 +81,7 @@ function Home() {
 
               {home?.cv && (
                 <a
-                  href={`http://localhost:5000${home.cv}`}
+                  href={`${import.meta.env.VITE_API_URL}${home.cv}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-xl border border-gray-300 px-5 py-3 text-sm font-medium transition hover:-translate-y-0.5 hover:border-blue-500 hover:text-blue-600 sm:px-6 sm:py-3.5 sm:text-base dark:border-gray-700 dark:hover:border-blue-400 dark:hover:text-blue-400"
@@ -123,15 +123,13 @@ function Home() {
 
             <div className="relative overflow-hidden rounded-[2rem] border border-gray-200 bg-gray-50 p-2.5 shadow-2xl shadow-gray-200/50 sm:rounded-[2.5rem] sm:p-3 dark:border-gray-800 dark:bg-[#111111] dark:shadow-black/40">
               <div className="overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
-               <img
-  src={
-    home?.profileImage
-      ? `http://localhost:5000${home.profileImage}`
-      : "/profile.jpg"
-  }
-  alt={home?.name || "Profile"}
-  className="aspect-square w-full object-cover object-center transition duration-500 hover:scale-105"
-/>
+             {home?.profileImage && (
+  <img
+    src={`${import.meta.env.VITE_API_URL}${home.profileImage}`}
+    alt={home?.name || "Profile"}
+    className="aspect-square w-full object-cover object-center transition duration-500 hover:scale-105"
+  />
+)}
               </div>
 
               <div className="absolute bottom-5 left-5 right-5 rounded-xl border border-white/20 bg-black/60 px-4 py-3 text-white backdrop-blur-md sm:bottom-7 sm:left-7 sm:right-7 sm:rounded-2xl sm:px-5 sm:py-4">

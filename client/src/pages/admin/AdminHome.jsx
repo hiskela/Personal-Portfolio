@@ -23,7 +23,7 @@ const [profileImage, setProfileImage] = useState(null);
     const fetchHome = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/home?t=${Date.now()}`,
+   `${import.meta.env.VITE_API_URL}/api/home?t=${Date.now()}`,
           {
             cache: "no-store",
           }
@@ -92,7 +92,7 @@ if (profileImage) {
 
   try {
     const response = await fetch(
-      "http://localhost:5000/api/home",
+     `${import.meta.env.VITE_API_URL}/api/home`,
       {
         method: home ? "PUT" : "POST",
         headers: {
@@ -251,7 +251,7 @@ setProfileImage(null)
 
   {home?.cv && (
     <a
-      href={`http://localhost:5000${home.cv}`}
+      href={`${import.meta.env.VITE_API_URL}${home.cv}`}
       target="_blank"
       rel="noreferrer"
       className="mt-3 inline-block text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"

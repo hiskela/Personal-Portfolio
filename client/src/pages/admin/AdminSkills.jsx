@@ -16,7 +16,7 @@ function AdminSkills() {
 
   const fetchSkills = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/skills");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/skills`);
       const data = await response.json();
 
       if (!response.ok) {
@@ -48,8 +48,8 @@ function AdminSkills() {
     event.preventDefault();
 
     const url = editingId
-      ? `http://localhost:5000/api/skills/${editingId}`
-      : "http://localhost:5000/api/skills";
+      ? `${import.meta.env.VITE_API_URL}/api/skills/${editingId}`
+      : `${import.meta.env.VITE_API_URL}/api/skills`;
 
     const method = editingId ? "PUT" : "POST";
 
@@ -109,7 +109,7 @@ function AdminSkills() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/skills/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/skills/${id}`,
         {
           method: "DELETE",
           headers: {

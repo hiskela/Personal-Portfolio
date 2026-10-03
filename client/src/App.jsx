@@ -9,6 +9,7 @@ import AdminProjects from "./pages/admin/AdminProjects";
 import AdminSkills from "./pages/admin/AdminSkills";
 import AdminAbout from "./pages/admin/AdminAbout";
 import AdminHome from "./pages/admin/AdminHome";
+import ProtectedAdminRoute from "./pages/admin/ProtectedAdminRoute";
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ function App() {
         />
 
         <Route path="/admin/login" element={<AdminLogin />} />
+<Route element={<ProtectedAdminRoute/>}>
 <Route path="/admin/messages" element={<AdminMessages/>}/>
 <Route path="/admin" element={<AdminDashboard/>}/>
 <Route
@@ -34,7 +36,9 @@ function App() {
 <Route path="/admin/skills" element={<AdminSkills />} />
 <Route path="/admin/about" element={<AdminAbout />} />
 <Route path="/admin/home" element={<AdminHome/>}/>
-      </Routes>
+     
+</Route>
+ </Routes>
     </BrowserRouter>
   );
 }

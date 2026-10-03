@@ -6,7 +6,7 @@ function Footer() {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/home");
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/home`);
         const data = await response.json();
 
         if (response.ok) {

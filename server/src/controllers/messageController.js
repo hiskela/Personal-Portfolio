@@ -46,7 +46,7 @@ export const markMessageAsRead = async (req, res) => {
     const message = await Message.findByIdAndUpdate(
       req.params.id,
       { read: true },
-      { new: true }
+      { returnDocument: "after" }
     );
 
     if (!message) {

@@ -25,7 +25,7 @@ const imageInputRef = useRef(null);
   const fetchProjects = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/projects"
+       `${import.meta.env.VITE_API_URL}/api/projects`
       );
 
       const data = await response.json();
@@ -72,8 +72,8 @@ const imageInputRef = useRef(null);
   }
 
   const url = editingId
-    ? `http://localhost:5000/api/projects/${editingId}`
-    : "http://localhost:5000/api/projects";
+    ? `${import.meta.env.VITE_API_URL}/api/projects/${editingId}`
+    : `${import.meta.env.VITE_API_URL}/api/projects`;
 
   const method = editingId ? "PUT" : "POST";
 
@@ -136,7 +136,7 @@ const imageInputRef = useRef(null);
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/projects/${id}`,
+`${import.meta.env.VITE_API_URL}/api/projects/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -263,7 +263,7 @@ const imageInputRef = useRef(null);
     <img
       src={
         formData.image.startsWith("/uploads/")
-          ? `http://localhost:5000${formData.image}`
+          ? `${import.meta.env.VITE_API_URL}${formData.image}`
           : formData.image
       }
       alt="Current project"

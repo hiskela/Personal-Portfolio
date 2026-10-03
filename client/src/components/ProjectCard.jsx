@@ -7,7 +7,7 @@ const getImageUrl = (image) => {
   }
 
   if (image.startsWith("/uploads/")) {
-    return `http://localhost:5000${image}`;
+    return `${import.meta.env.VITE_API_URL}${image}`;
   }
 
   return image;

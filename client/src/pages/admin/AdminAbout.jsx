@@ -20,7 +20,7 @@ function AdminAbout() {
     const fetchAbout = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/about"
+         `${import.meta.env.VITE_API_URL}/api/about`
         );
 
         const data = await response.json();
@@ -68,8 +68,8 @@ function AdminAbout() {
 
     try {
       const url = about
-        ? "http://localhost:5000/api/about"
-        : "http://localhost:5000/api/about";
+        ? `${import.meta.env.VITE_API_URL}/api/about`
+        : `${import.meta.env.VITE_API_URL}/api/about`;
 
       const method = about ? "PUT" : "POST";
 

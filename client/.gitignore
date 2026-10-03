@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 public/cv.pdf
 public/profile.jpg
+.env
+.env.*

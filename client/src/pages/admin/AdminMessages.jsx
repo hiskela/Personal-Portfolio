@@ -22,7 +22,7 @@ function AdminMessages() {
   const fetchMessages = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/messages",
+`${import.meta.env.VITE_API_URL}/api/messages`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -47,7 +47,7 @@ function AdminMessages() {
   const markAsRead = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/messages/${id}/read`,
+        `${import.meta.env.VITE_API_URL}/api/messages/${id}/read`,
         {
           method: "PATCH",
           headers: {
@@ -81,7 +81,7 @@ function AdminMessages() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/messages/${id}`,
+`${import.meta.env.VITE_API_URL}/api/messages/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -102,16 +102,12 @@ function AdminMessages() {
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminUser");
-    navigate("/admin/login");
-  };
+
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-[#0a0a0a] dark:text-white">
-<AdminSidebar/>
-    <main className="min-h-screen bg-white px-6 py-10 text-gray-900 dark:bg-[#0a0a0a] dark:text-white">
+  <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-[#0a0a0a] dark:text-white">
+  <AdminSidebar />
+    <main className="md:ml-64 min-h-screen bg-white px-6 py-10 text-gray-900 dark:bg-[#0a0a0a] dark:text-white">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 flex items-center justify-between">
           <div>
@@ -128,12 +124,7 @@ function AdminMessages() {
             </p>
           </div>
 
-          <button
-            onClick={logout}
-            className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium transition hover:border-red-400 hover:text-red-600 dark:border-gray-700 dark:hover:border-red-500 dark:hover:text-red-400"
-          >
-            Logout
-          </button>
+          
         </div>
 
         {error && (

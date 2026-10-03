@@ -12,7 +12,7 @@ const [messageCount, setMessageCount] = useState(0);
       const token = localStorage.getItem("adminToken");
 
       const projectResponse = await fetch(
-        "http://localhost:5000/api/projects/count",
+ `${import.meta.env.VITE_API_URL}/api/projects/count`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -31,7 +31,7 @@ const [messageCount, setMessageCount] = useState(0);
       setProjectCount(projectData.count);
 
 const skillResponse = await fetch(
-  "http://localhost:5000/api/skills/count",
+`${import.meta.env.VITE_API_URL}/api/skills/count`,
   {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -49,7 +49,7 @@ if (!skillResponse.ok) {
 
 setSkillCount(skillData.count);
       const messageResponse = await fetch(
-        "http://localhost:5000/api/messages/count",
+        `${import.meta.env.VITE_API_URL}/api/messages/count`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
