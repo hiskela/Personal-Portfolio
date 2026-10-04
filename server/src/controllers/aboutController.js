@@ -2,10 +2,17 @@ import About from "../models/About.js";
 
 export const getAbout = async (req, res) => {
   try {
+    console.log("Database:", About.db.name);
+    console.log("Collection:", About.collection.name);
+
     const about = await About.findOne();
+
+    console.log("About data:", about);
 
     res.status(200).json(about);
   } catch (error) {
+    console.error("About error:", error);
+
     res.status(500).json({
       message: "Failed to fetch about information",
     });
