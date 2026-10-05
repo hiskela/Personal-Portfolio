@@ -81,8 +81,11 @@ function Home() {
 
               {home?.cv && (
                 <a
-                  href={`${import.meta.env.VITE_API_URL}${home.cv}`}
-                  target="_blank"
+href={
+  home.cv?.startsWith("/uploads/")
+    ? `${import.meta.env.VITE_API_URL}${home.cv}`
+    : home.cv
+}                  target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-xl border border-gray-300 px-5 py-3 text-sm font-medium transition hover:-translate-y-0.5 hover:border-blue-500 hover:text-blue-600 sm:px-6 sm:py-3.5 sm:text-base dark:border-gray-700 dark:hover:border-blue-400 dark:hover:text-blue-400"
                 >
@@ -125,8 +128,11 @@ function Home() {
               <div className="overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
              {home?.profileImage && (
   <img
-    src={`${import.meta.env.VITE_API_URL}${home.profileImage}`}
-    alt={home?.name || "Profile"}
+src={
+  home.profileImage?.startsWith("/uploads/")
+    ? `${import.meta.env.VITE_API_URL}${home.profileImage}`
+    : home.profileImage
+}    alt={home?.name || "Profile"}
     className="aspect-square w-full object-cover object-center transition duration-500 hover:scale-105"
   />
 )}

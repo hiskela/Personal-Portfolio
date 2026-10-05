@@ -109,23 +109,31 @@ const imageInputRef = useRef(null);
 };
 
   const editProject = (project) => {
-    setEditingId(project._id);
+  setEditingId(project._id);
 
-    setFormData({
-      title: project.title,
-      description: project.description,
-      image: project.image || "",
-      technologies: project.technologies.join(", "),
-      github: project.github || "",
-      live: project.live || "",
-      featured: project.featured,
-    });
+  setFormData({
+    title: project.title,
+    description: project.description,
+    image: project.image || "",
+    technologies: project.technologies.join(", "),
+    github: project.github || "",
+    live: project.live || "",
+    featured: project.featured,
+  });
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  setImageFile(null);
+  setImagePreview("");
+
+  if (imageInputRef.current) {
+    imageInputRef.current.value = "";
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
 
   const deleteProject = async (id) => {
     const confirmed = window.confirm(
@@ -159,7 +167,7 @@ const imageInputRef = useRef(null);
     }
   };
 
- const resetForm = () => {
+const resetForm = () => {
   setEditingId(null);
 
   setFormData({
@@ -173,6 +181,7 @@ const imageInputRef = useRef(null);
   });
 
   setImageFile(null);
+  setImagePreview("");
 
   if (imageInputRef.current) {
     imageInputRef.current.value = "";
