@@ -60,9 +60,7 @@ export const createProject = async (req, res) => {
       github: github || "",
       live: live || "",
       featured: featured === true || featured === "true",
-      image: req.file
-        ? `/uploads/projects/${req.file.filename}`
-        : "",
+      image: req.file ? req.file.path : "",
     });
 
     res.status(201).json(project);
@@ -101,7 +99,7 @@ export const updateProject = async (req, res) => {
     project.featured = featured === true || featured === "true";
 
     if (req.file) {
-      project.image = `/uploads/projects/${req.file.filename}`;
+      project.image = req.file.path;
     }
 
     await project.save();
@@ -134,6 +132,7 @@ export const deleteProject = async (req, res) => {
     });
   }
 };
+
 export const getProjectCount = async (req, res) => {
   try {
     const count = await Project.countDocuments();

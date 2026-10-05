@@ -1,26 +1,12 @@
 import multer from "multer";
-import path from "path";
-import fs from "fs";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import cloudinary from "../config/cloudinary.js";
 
-const uploadDirectory = "uploads/projects";
-
-if (!fs.existsSync(uploadDirectory)) {
-  fs.mkdirSync(uploadDirectory, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDirectory);
-  },
-
-  filename: (req, file, cb) => {
-    const extension = path.extname(file.originalname);
-
-    const filename = `${Date.now()}-${Math.round(
-      Math.random() * 1e9
-    )}${extension}`;
-
-    cb(null, filename);
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "portfolio/projects",
+    allowed_formats: ["jpg", "jpeg", "png", "webp"],
   },
 });
 
