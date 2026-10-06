@@ -31,7 +31,8 @@ const uploadCv = async (file) => {
       {
         folder: "portfolio/cv",
         resource_type: "raw",
-        public_id: `cv-${Date.now()}`,
+        public_id: `cv-${Date.now()}.pdf`,
+        format: "pdf",
       },
       (error, result) => {
         if (error) {
